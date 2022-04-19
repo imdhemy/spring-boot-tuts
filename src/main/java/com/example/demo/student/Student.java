@@ -1,9 +1,16 @@
 package com.example.demo.student;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+    @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
     private Long id;
+
     private String name;
     private String email;
     private LocalDate dob;

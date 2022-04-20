@@ -2,6 +2,7 @@ package com.example.demo.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -14,6 +15,8 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+    @Transient
+    private Integer age;
 
     public Student() {
     }
@@ -67,6 +70,10 @@ public class Student {
         return this;
     }
 
+    public Integer getAge() {
+        return Period.between(dob, LocalDate.now()).getYears();
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -74,6 +81,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
+                ", age=" + age +
                 '}';
     }
 }
